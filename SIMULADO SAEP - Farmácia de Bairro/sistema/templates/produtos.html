@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - Sistema Farmácia</title>
+    <link rel="stylesheet" href="{{ url_for('estático', filename='css/estilo.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            <span>Sistema de Farmácia</span>
+        </div>
+        <div class="navbar-user">
+            <span class="user-name">{{ username }}</span>
+            <a href="/logout" class="btn btn-secondary btn-sm">Sair</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="page-header">
+            <div>
+                <h1>Cadastro de Produtos</h1>
+                <a href="/dashboard" class="btn btn-secondary">← Voltar</a>
+            </div>
+            <button class="btn btn-primary" onclick="openModal()">+ Novo Produto</button>
+        </div>
+        
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar produto por nome ou lote...">
+        </div>
+        
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Lote</th>
+                        <th>Fabricante</th>
+                        <th>Estoque</th>
+                        <th>Validade</th>
+                        <th>Preço</th>
+                        <th>Controle Especial</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="productsTableBody">
+                    <tr>
+                        <td colspan="8" class="loading">Carregando produtos...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- Modal de Produto -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Novo Produto</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <form id="productForm">
+                <input type="hidden" id="productId">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nome">Nome do Produto *</label>
+                        <input type="text" id="nome" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lote">Lote *</label>
+                        <input type="text" id="lote" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <textarea id="descricao" rows="3"></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fabricante_id">Fabricante *</label>
+                        <select id="fabricante_id" required>
+                            <option value="">Selecione...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="preco">Preço (R$) *</label>
+                        <input type="number" id="preco" step="0.01" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="data_fabricacao">Data de Fabricação *</label>
+                        <input type="date" id="data_fabricacao" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="data_validade">Data de Validade *</label>
+                        <input type="date" id="data_validade" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="quantidade_estoque">Quantidade em Estoque *</label>
+                        <input type="number" id="quantidade_estoque" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="estoque_minimo">Estoque Mínimo *</label>
+                        <input type="number" id="estoque_minimo" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="controle_especial">
+                        <span>Medicamento de Controle Especial</span>
+                    </label>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('estático', filename='js/produtos.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistema Farmácia</title>
+    <link rel="stylesheet" href="{{ url_for('estático', filename='css/estilo.css') }}">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <!-- Adicionado SVG simplificado para ícone -->
+                <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 12h-4l-3 9L9 3l-3 9H2"></path>
+                </svg>
+                <h1>Sistema de Farmácia</h1>
+                <p>Gestão de Estoque e Produtos</p>
+            </div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Usuário</label>
+                    <input type="text" id="username" name="username" required autofocus placeholder="Digite seu usuário">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" required placeholder="Digite sua senha">
+                </div>
+                
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+                
+                <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+            </form>
+            
+            <div class="login-footer">
+                <p>Usuários de teste:</p>
+                <small><strong>joao</strong> / 123456 | <strong>maria</strong> / 123456 | <strong>pedro</strong> / 123456</small>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('estático', filename='js/login.js') }}"></script>
+</body>
+</html>
